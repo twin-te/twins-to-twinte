@@ -28,7 +28,7 @@ const postToTwinte = async lectures => {
         method: "POST",
         body: JSON.stringify({ lectureID: l }),
         headers: {
-          "Content-Type": "application/json; charset=utf8"
+          "Content-Type": "application/json; charset=utf-8"
         },
         credentials: "include"
       });
