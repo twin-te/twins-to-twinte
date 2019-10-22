@@ -27,6 +27,9 @@ const postToTwinte = async lectures => {
       await fetch("https://dev.api.twinte.net/timetables/2019", {
         method: "POST",
         body: JSON.stringify({ lectureID: l }),
+        headers: {
+          "Content-Type": "application/json; charset=utf8"
+        },
         credentials: "include"
       });
     })
