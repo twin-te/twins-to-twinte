@@ -15,18 +15,18 @@ if (
       )
         .map(el => el.innerText.split("\n")[0])
         .filter((el, i, self) => el !== "\u00A0" && self.indexOf(el) === i);
-      postToTwinte(lectures);
+      postToTwinte(lectures,document.querySelector('table td').textContent.match(/(\d{4})年度/)[1]);
     }
   };
   insertAfter(b, document.querySelector("#main-portlet-title"));
 }
 
-const postToTwinte = async lectures => {
+const postToTwinte = async (lectures, year) => {
   await Promise.all(
     lectures.map(async l => {
-      await fetch("https://dev.api.twinte.net/timetables/2019", {
+      await fetch("https://dev.api.twinte.net/v1/timetables/", {
         method: "POST",
-        body: JSON.stringify({ lectureID: l }),
+        body: JSON.stringify({ lectureCode: l, year }),
         headers: {
           "Content-Type": "application/json; charset=utf-8"
         },
