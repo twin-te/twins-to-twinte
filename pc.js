@@ -1,3 +1,11 @@
+/**
+ * Copyright (c) Twin:te team.
+ * This source code is licensed under the GPL v3 license found in the
+ * LICENSE file in the root directory of this source tree.
+ * 
+ * Written by SIY1121
+ */
+
 /* 
   urlが
   https://twins.tsukuba.ac.jp/campusweb/campusportal.do?page=main&tabId=rs
