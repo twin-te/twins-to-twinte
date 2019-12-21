@@ -1,6 +1,6 @@
 /**
  * Copyright (c) Twin:te team.
- * This source code is licensed under the GPL v3 license found in the
+ * This source code is licensed under the AGPL v3 license found in the
  * LICENSE file in the root directory of this source tree.
  * 
  * Written by SIY1121
@@ -69,9 +69,9 @@ const postToTwinte = csv => {
   const matches = csv.matchAll(/"(.*?)"/gm);
   for (const match of matches) {
     $.ajax({
-      url: "https://dev.api.twinte.net/timetables/2019",
+      url: "https://dev.api.twinte.net/v1/timetables/",
       type: "POST",
-      data: JSON.stringify({ lectureID: match[1] }),
+      data: JSON.stringify({ lectureCode: match[1], year: 2019 }),
       contentType: "application/json",
       dataType: "json",
       xhrFields: {
