@@ -39,7 +39,7 @@ if (
 }
 
 const checkTwinteLogin = async () => {
-  const { ok } = await fetch("https://dev.api.twinte.net/v1/users/me", {
+  const { ok } = await fetch("https://api.twinte.net/v1/users/me", {
     credentials: "include"
   });
   return ok;
@@ -48,7 +48,7 @@ const checkTwinteLogin = async () => {
 const postToTwinte = async (lectures, year) => {
   const res = await Promise.all(
     lectures.map(async l => {
-      const { ok } = await fetch("https://dev.api.twinte.net/v1/timetables/", {
+      const { ok } = await fetch("https://api.twinte.net/v1/timetables/", {
         method: "POST",
         body: JSON.stringify({ lectureCode: l, year }),
         headers: {
