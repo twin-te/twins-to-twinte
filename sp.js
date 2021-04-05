@@ -50,7 +50,7 @@ const postToTwinte = async (lectures, year) => {
     lectures.map(async l => {
       const { ok } = await fetch("https://app.twinte.net/api/v3/registered-courses/", {
         method: "POST",
-        body: JSON.stringify({ code: l, year }),
+        body: JSON.stringify({ code: l, parseInt(year) }),
         headers: {
           "Content-Type": "application/json; charset=utf-8"
         },
