@@ -2,9 +2,9 @@
  * Copyright (c) Twin:te team.
  * This source code is licensed under the AGPL v3 license found in the
  * LICENSE file in the root directory of this source tree.
- * 
+ *
  * Written by SIY1121
- * 
+ *
  */
 
 if (
@@ -22,7 +22,7 @@ if (
       const lectures = Array.from(
         document.querySelectorAll(".rishu-koma td td")
       )
-        .map(el => el.innerText.split("\n")[0])
+        .map((el) => el.innerText.split("\n")[0])
         .filter((el, i, self) => el !== "\u00A0" && self.indexOf(el) === i);
 
       postToSwift(
@@ -35,12 +35,14 @@ if (
 }
 
 const postToSwift = async (lectures, year) => {
-    let lecturesArray = [];
-    lectures.forEach(lecture => {
-        lecturesArray.push({
-            code: lecture,
-            year: year
-        })
-    })
-    window.webkit.messageHandlers.returnFromTwins.postMessage(JSON.stringify(lecturesArray))
+  const lecturesArray = lectures.map((lecture) => {
+    return {
+      code: lecture,
+      year: year,
+    };
+  });
+
+  window.webkit.messageHandlers.returnFromTwins.postMessage(
+    JSON.stringify(lecturesArray)
+  );
 };
