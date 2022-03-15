@@ -22,17 +22,17 @@ if (
     width: "90%",
     height: "46px",
     bottom: "3rem",
+    color: "#ffffff",
     left: "50%",
+    background: "linear-gradient(91.58deg, #6bcedc -8.01%, #71e2dc 105.39%)",
     transform: "translateX(-50%)",
     "-webkit-transform": "translateX(-50%)",
     "-ms-transform": "translateX(-50%)",
-    background: "linear-gradient(91.58deg, #6bcedc -8.01%, #71e2dc 105.39%)",
+    "font-weight": "bold",
     "box-shadow":
       "-5px -5px 10px rgba(255, 255, 255, 0.6),2px 3px 8px rgba(165, 186, 199, 0.45)",
     "border-radius": "25px",
     "font-family": "Noto Sans JP",
-    "font-style": "normal",
-    color: "#ffffff",
   });
   b.onclick = async () => {
     const now = document.querySelector("[name=TimeoutForm]+table td").innerText;
