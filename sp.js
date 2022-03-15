@@ -32,6 +32,7 @@ if (
       "-5px -5px 10px rgba(255, 255, 255, 0.6),2px 3px 8px rgba(165, 186, 199, 0.45)",
     "border-radius": "25px",
     "font-family": "Noto Sans JP",
+    "font-size": "0.9rem",
   });
   b.onclick = async () => {
     const now = document.querySelector("[name=TimeoutForm]+table td").innerText;
