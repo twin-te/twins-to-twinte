@@ -37,53 +37,17 @@ if (
   b.onclick = async () => {
     const now = document.querySelector("[name=TimeoutForm]+table td").innerText;
     if (window.confirm(`${now}の時間割をインポートします`)) {
-      if (!(await checkTwinteLogin())) {
-        alert("エラー\nアプリ側でTwin:teにログインしてからご利用いただけます");
-        return;
-      }
-
       const lectures = Array.from(
-        document.querySelectorAll(".rishu-koma td td")
+        document.querySelectorAll(".rishu-koma td td"),
       )
         .map((el) => el.innerText.split("\n")[0])
         .filter((el, i, self) => el !== "\u00A0" && self.indexOf(el) === i);
 
-      postToTwinte(
-        lectures,
-        document.querySelector("table td").textContent.match(/(\d{4})年度/)[1]
-      );
+      const year = now.match(/(\d{4})年度/)[1];
+      const codes = lectures.join(",");
+      const url = `https://app.twinte.net/import?year=${year}&codes=${encodeURIComponent(codes)}`;
+      window.location.href = url;
     }
   };
   insertAfter(b, document.querySelector("#footer-span"));
 }
-
-const checkTwinteLogin = async () => {
-  const { ok } = await fetch("https://app.twinte.net/api/v3/users/me", {
-    credentials: "include",
-  });
-  return ok;
-};
-
-const postToTwinte = async (lectures, year) => {
-  const res = await Promise.all(
-    lectures.map(async (l) => {
-      const { ok } = await fetch(
-        "https://app.twinte.net/api/v3/registered-courses/",
-        {
-          method: "POST",
-          body: JSON.stringify({ code: l, year: parseInt(year) }),
-          headers: {
-            "Content-Type": "application/json; charset=utf-8",
-          },
-          credentials: "include",
-        }
-      );
-      return ok;
-    })
-  );
-  alert(
-    `Twin:teへのインポートが完了しました\n新規追加：${
-      res.filter((el) => el).length
-    }件`
-  );
-};
