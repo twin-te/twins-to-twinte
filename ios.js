@@ -39,29 +39,16 @@ if (
     const now = document.querySelector("[name=TimeoutForm]+table td").innerText;
     if (window.confirm(`${now}の時間割をインポートします`)) {
       const lectures = Array.from(
-        document.querySelectorAll(".rishu-koma td td")
+        document.querySelectorAll(".rishu-koma td td"),
       )
         .map((el) => el.innerText.split("\n")[0])
         .filter((el, i, self) => el !== "\u00A0" && self.indexOf(el) === i);
 
-      postToSwift(
-        lectures,
-        document.querySelector("table td").textContent.match(/(\d{4})年度/)[1]
-      );
+      const year = now.match(/(\d{4})年度/)[1];
+      const codes = lectures.join(",");
+      const url = `https://app.twinte.net/import?year=${year}&codes=${encodeURIComponent(codes)}`;
+      window.location.href = url;
     }
   };
   insertAfter(b, document.querySelector("#footer-span"));
 }
-
-const postToSwift = async (lectures, year) => {
-  const lecturesArray = lectures.map((lecture) => {
-    return {
-      code: lecture,
-      year: year,
-    };
-  });
-
-  window.webkit.messageHandlers.returnFromTwins.postMessage(
-    JSON.stringify(lecturesArray)
-  );
-};
