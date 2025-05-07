@@ -1,3 +1,4 @@
-.git
-.wrangler
-wrangler.toml
+*
+!ios.js
+!pc.js
+!sp.js
