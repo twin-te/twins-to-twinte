@@ -22,4 +22,6 @@ AGPL v3
 
 詳しくは[こちら](https://www.gnu.org/licenses/agpl-3.0.html)を御覧ください。
 
-[![](https://www.datocms-assets.com/31049/1618983297-powered-by-vercel.svg)](https://vercel.com?utm_source=twin-te&utm_campaign=oss)
+# デプロイ
+デプロイ対象とするファイルは`.assetsignore`でホワイトリスト指定されています。
+ファイルを追加・削除する場合は同ファイルを変更してください。

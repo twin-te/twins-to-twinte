@@ -1,0 +1,8 @@
+name = "twins-to-twinte"
+compatibility_date = "2025-05-07"
+
+[assets]
+directory = "."
+
+[observability]
+enabled = true
