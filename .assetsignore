@@ -1,4 +1,3 @@
-*
-!ios.js
-!pc.js
-!sp.js
+.git
+.wrangler
+wrangler.toml
