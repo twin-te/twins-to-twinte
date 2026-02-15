@@ -9,7 +9,7 @@
 
 if (
   document
-    .querySelector("#main-portlet-title")
+    .querySelector('.page-title .title span')
     .textContent.includes("履修登録・登録状況照会")
 ) {
   const insertAfter = (newNode, referenceNode) =>
@@ -34,21 +34,23 @@ if (
     "border-radius": "25px",
     "font-family": "Noto Sans JP",
     "font-size": "0.9rem",
+    "z-index": 2,
   });
   b.onclick = async () => {
-    const now = document.querySelector("[name=TimeoutForm]+table td").innerText;
+    const now = document.querySelector("#auto-table-1 tr:nth-child(3) td:nth-child(2)").innerText.split('　')[0];
     if (window.confirm(`${now}の時間割をインポートします`)) {
       const lectures = Array.from(
-        document.querySelectorAll(".rishu-koma td td"),
+        document.querySelectorAll(".rishu-koma tr.sibling > td:not(.rishu-koma-head) td"),
       )
-        .map((el) => el.innerText.split("\n")[0])
-        .filter((el, i, self) => el !== "\u00A0" && self.indexOf(el) === i);
+        .map((el) => el.innerText.split("\n")[0].trim())
+        .filter((el, i, self) => el !== "未登録" && self.indexOf(el) === i);
 
       const year = now.match(/(\d{4})年度/)[1];
       const codes = lectures.join(",");
       const url = `https://app.twinte.net/import?year=${year}&codes=${encodeURIComponent(codes)}`;
-      window.location.href = url;
+      console.log(lectures);
+      // window.location.href = url;
     }
   };
-  insertAfter(b, document.querySelector("#footer-span"));
+  insertAfter(b, document.getElementById("main-wrapper"));
 }
