@@ -47,9 +47,7 @@ if (
 
       const year = now.match(/(\d{4})年度/)[1];
       const codes = lectures.join(",");
-      const url = `https://app.twinte.net/import?year=${year}&codes=${encodeURIComponent(codes)}`;
-      console.log(lectures);
-      // window.location.href = url;
+      window.location.href = `https://app.twinte.net/import?year=${ year }&codes=${ encodeURIComponent(codes) }`;
     }
   };
   insertAfter(b, document.getElementById("main-wrapper"));
