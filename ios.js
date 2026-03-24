@@ -7,11 +7,8 @@
  *
  */
 
-if (
-  document
-    .querySelector('.page-title .title span')
-    .textContent.includes("履修登録・登録状況照会")
-) {
+const title = document.querySelector(".page-title .title span")?.textContent
+if (title?.includes("履修登録・登録状況照会")) {
   const insertAfter = (newNode, referenceNode) =>
     referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
   const b = document.createElement("button");
