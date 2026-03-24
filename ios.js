@@ -37,7 +37,7 @@ if (
     "z-index": 2,
   });
   b.onclick = async () => {
-    const now = document.querySelector("#auto-table-1 tr:nth-child(3) td:nth-child(2)").innerText.split('　')[0];
+    const now = document.querySelector("#auto-table-1 tr:nth-child(3) td:nth-child(2)").innerText;
     if (window.confirm(`${now}の時間割をインポートします`)) {
       const lectures = Array.from(
         document.querySelectorAll(".rishu-koma tr.sibling > td:not(.rishu-koma-head) td"),
